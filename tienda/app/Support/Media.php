@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Support;
+
+use Illuminate\Support\Facades\Storage;
+
+class Media
+{
+    /** Convierte una ruta guardada en BD ("products/a.jpg") en URL pública. */
+    public static function url(?string $path): ?string
+    {
+        if (! $path) {
+            return null;
+        }
+
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+            return $path;
+        }
+
+        return Storage::disk('public')->url($path);
+    }
+}
