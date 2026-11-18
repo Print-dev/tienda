@@ -13,6 +13,7 @@ class OpcionValor extends Model
     /** @use HasFactory<\Database\Factories\OpcionValorFactory> */
     use HasFactory;
     protected $table = 'opcion_valores';
+    public $timestamps = false;
 
     /* public function varianteOpcionValores(): HasMany
     {

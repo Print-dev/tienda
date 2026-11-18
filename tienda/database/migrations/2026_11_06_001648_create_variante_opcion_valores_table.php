@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('producto_variante_id')->constrained('producto_variantes')->onDelete('cascade');
             $table->foreignId('opcion_valor_id')->constrained('opcion_valores')->onDelete('cascade');
+            $table->unique(['producto_variante_id', 'opcion_valor_id']);
             $table->timestamps();
         });
     }

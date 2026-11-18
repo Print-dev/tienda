@@ -22,6 +22,30 @@ class MarcaSeeder extends Seeder
                 'nombre' => 'Samsung',
                 'slug' => 'samsung',
             ],
+            [
+                    'nombre' => 'Platanitos',
+                    'slug' => 'platanitos',
+                ],
+                [
+                    'nombre' => 'Adidas',
+                    'slug' => 'adidas',
+                ],
+                [
+                    'nombre' => 'Nike',
+                    'slug' => 'nike',
+                ],
+                [
+                    'nombre' => 'Puma',
+                    'slug' => 'puma',
+                ],
+                [
+                    'nombre' => 'Zara',
+                    'slug' => 'zara',
+                ],
+                [
+                    'nombre' => 'H&M',
+                    'slug' => 'hm',
+                ],
         ];
 
         foreach ($marcas as $marca) {
