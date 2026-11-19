@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Producto extends Model
 {
@@ -23,6 +24,7 @@ class Producto extends Model
         return $this->belongsTo(Vendedor::class);
     }
 
+    //devuelve Las 6 variantes y se usa en La página de detalle del producto (show)
     public function variantes(): HasMany
     {
         return $this->hasMany(ProductoVariante::class);
@@ -46,6 +48,13 @@ class Producto extends Model
     public function scopeActivo($query)
     {
         return $query->where('estado', 'activo');
+    }
+
+    //la variante que representa al producto
+    public function defaultVariant(): HasOne
+    {
+        //de las variantes de este producto, dame una sola, la marcada con is_default = true
+        return $this->hasOne(ProductoVariante::class)->where('is_default', true);
     }
 
     public function especificaciones(): BelongsToMany

@@ -57,6 +57,21 @@ class ProductoController extends Controller
         return new ProductoDetalleResource($producto);
     }
 
+    /** GET /api/v1/products/{slug}/related — misma categoría, sin incluir el actual. */
+    public function related(string $slug)
+    {
+        $product = Producto::active()->where('slug', $slug)->firstOrFail();
+
+        $related = ProductListQuery::base()
+            ->where('category_id', $product->category_id)
+            ->whereKeyNot($product->id)
+            ->orderByDesc('rating_avg')
+            ->limit(8)
+            ->get();
+
+        return ProductListResource::collection($related);
+    }
+
     /**
      * Update the specified resource in storage.
      */
